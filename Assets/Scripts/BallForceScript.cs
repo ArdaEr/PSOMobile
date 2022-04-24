@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class BallForceScript : MonoBehaviour
 {
     Rigidbody rigid = new Rigidbody();
+    [SerializeField] GameObject Player;
+
     private void Start() {
         rigid = GetComponent<Rigidbody>();
     }
@@ -17,11 +19,10 @@ public class BallForceScript : MonoBehaviour
         Debug.Log("Vurdu");
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetKeyDown(KeyCode.Q))
         {
-            rigid.AddForce(transform.right * 1000, ForceMode.Acceleration);
-            rigid.useGravity = true;
-            Debug.Log("Vurdu");
+            transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y + 1, Player.transform.position.z+5);
+            rigid.velocity = new Vector3(0f,0f,0f);
         }
     }
 }
